@@ -1,0 +1,96 @@
+{
+	"info": {
+		"_postman_id": "2543cd46-b329-480d-93bd-51ebe03e267a",
+		"name": "hotsfullyAPITest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6136568"
+	},
+	"item": [
+		{
+			"name": "Get Weather Details",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify Longitude Response\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.coord.lon).to.eql(-0.13)\r",
+							" \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify Latitude Response\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(responseJson.coord.lat).to.eql(51.51)\r",
+							" \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify City Name Is Not Empty\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(pm.response.json().name).to.eq(\"London\")\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify Response Time Is Less than 600ms\", () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(600);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
